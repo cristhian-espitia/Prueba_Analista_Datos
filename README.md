@@ -30,4 +30,4 @@ Regla de negocio:
 De acuerdo con el campo “Categoria” solo se permiten las siguientes opciones en el campo “Segmento_poblacional”
  
 
-
+[![111.png](https://i.postimg.cc/fR3Pd2Tw/111.png)](https://postimg.cc/G4CzwjyN)
