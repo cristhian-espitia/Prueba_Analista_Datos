@@ -1,9 +1,12 @@
 # Prueba_Analista_Datos
 Prueba Analista Calidad de Datos BI
+
 La siguiente prueba se debe desarrollar en el programa funciones y paquetes de su preferencia (No existe ningún tipo de restricción para desarrollar el objetivo y demostrar sus conocimientos en R, Python, SQL, Excel, etc. También está permitido todo tipo de consultas, repositorios o demás recursos que considere necesarios). Presentar un informe conciso con los resultados, análisis y el proceso desarrollado (enviar en un archivo plano txt los scripts realizados)
+
 Descripción de los datos.
 La Caja Colombiana de Subsidio Familiar – Colsubsidio, es una compañía que pertenece al Sistema del Subsidio Familiar y al Sistema de Protección y Seguridad Social colombiano, que en sus más de 60 años se ha consolidado como la caja de compensación familiar de mayor cobertura del país. Su gestión, la desarrolla a través de la administración de recursos provenientes de las empresas aportantes y la prestación de servicios sociales para los trabajadores afiliados, sus familias y la población en general.
 Colsubsidio ha dividido la prestación de sus servicios en once diferentes unidades especializadas de servicio (UES) que ofrecen diferentes productos.
+
 En este caso, se requiere un perfilamiento de los datos, la programación de reglas de calidad y negocio que se puedan ejecutar diariamente para conocer el nivel de calidad de la información y posteriormente lograr generar diferentes tipos de reportes gerenciales. Para tal fin se le dispone la siguiente base de datos:
 
 Persona: Datos de las personas con afiliación vigente a la caja  :
