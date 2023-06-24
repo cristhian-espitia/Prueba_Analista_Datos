@@ -10,7 +10,7 @@ Persona: Datos de las personas con afiliación vigente a la caja  :
 
 Data
 ---
-https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv
+https://colsubsidio365-my.sharepoint.com/personal/nydibosm_colsubsidio_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fnydibosm%5Fcolsubsidio%5Fcom%2FDocuments%2FPRUEBA%20DE%20CONOCIMIENTO%20ANALISTA%20CALIDAD%20DE%20%20DATOS&ga=1
 
 Reto de análisis de calidad
 
