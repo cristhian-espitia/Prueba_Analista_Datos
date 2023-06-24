@@ -1,0 +1,263 @@
+TRAEMOS LIBRERIAS A UTILIZAR:👩‍💻👩‍💻
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+TRAEMOS EL ARCHIVO , AJUSTANDOLO SEGUN EL SEPARADOR QUE TIENE ";"
+df_persona= pd.read_csv('/content/drive/MyDrive/Persona2.csv', sep=';')
+df_persona
+
+CONOCIENDO LOS DATOS
+¿Como está perfilada las bases de datos ?
+
+Visualizando todas las columnas
+
+print (df_persona.columns)
+print ('-----------------------------')
+
+Descripcion
+df_persona.describe()
+
+Numero de filas y columnas
+df_persona.shape
+
+Tipo de datos
+df_persona.dtypes 
+
+Mayor y menor valor por columnas
+max_values = df_persona.max()
+min_values = df_persona.min()
+
+print("Valor máximo:")
+print(max_values)
+
+print("Valor mínimo:")
+print(min_values)
+
+Longitud de campo
+longitudes = df_persona.apply(lambda x: x.astype(str).str.len())
+print(longitudes)
+
+2. Programe y genere los indicadores de calidad de las siguientes reglas:
+Reglas de calidad:
+Verificamos si existen campos vacion en "NumldPersona"
+campos_vacios_NumIdPersona = df_persona['NumIdPersona'].isna()
+campos_vacios_NumIdPersona
+
+Calculamos el número de campos vacíos en la columna 'NumIdPersona' / cantidad de fallas en NumIdPersona
+num_campos_vacios_NumIdPersona = campos_vacios_NumIdPersona.sum()
+num_campos_vacios_NumIdPersona
+
+if num_campos_vacios_NumIdPersona == 0:
+    print("La regla 'El campo NumIdPersona no admite campos vacíos' se cumple.")
+else:
+    print("La regla 'El campo NumIdPersona no admite campos vacíos' no se cumple. Se encontraron", num_campos_vacios_NumIdPersona, "campos vacíos.")
+
+registros_correctos_NumIdpersona=total_registros_NumIdPersona-num_campos_vacios_NumIdPersona
+registros_correctos_NumIdpersona
+
+ Indicador de calidad para la variable 'NumIdpersona'
+total_registros_NumIdPersona = len(df_persona)
+print("Número de campos llenos en 'NumIdPersona':", format(total_registros_NumIdPersona-num_campos_vacios_NumIdPersona,','))
+porcentaje_campos_diligenciados= ((total_registros_NumIdPersona-num_campos_vacios_NumIdPersona)/total_registros_NumIdPersona)*100
+print("Porcentaje de campos diligenciados en 'NumIdPersona':", round(porcentaje_campos_diligenciados,2), "%")  
+
+En el campo “Genero” solo se admite como valido los valores “F” Y “M”
+Verificamos si existen valores distintos de 'F' y 'M' en la columna 'Genero':
+valores_invalidos_genero = df_persona.loc[~df_persona['Genero'].isin(['F', 'M']), 'Genero']
+valores_invalidos_genero
+
+Calculamos el número de valores inválidos en la columna 'Genero':
+num_valores_invalidos_genero = len(valores_invalidos_genero)
+num_valores_invalidos_genero
+
+if num_valores_invalidos == 0:
+    print("En el campo “Genero” solo se admite como valido los valores “F” Y “M” ' se cumple.")
+else:
+    print("En el campo “Genero” solo se admite como valido los valores “F” Y “M” ' no cumple. Se encontraron", format(num_valores_invalidos,','), "campos invalidos.")
+
+registros_correctos_genero=total_registros_genero-num_valores_invalidos_genero
+registros_correctos_genero
+
+Indicador de calidad para la variable 'Genero
+total_registros_genero = len(df_persona)
+print("Número de campos validos en la columna 'Genero':", format(total_registros_genero-num_valores_invalidos_genero,','))
+porcentaje_campos_validos_genero= ((total_registros_genero-num_valores_invalidos_genero)/total_registros_genero)*100
+print("Porcentaje de campos validos en la columna 'Genero':", round(porcentaje_campos_validos_genero,2), "%")
+
+En el campo “Segmento_poblacional” solo se permiten las siguientes opciones: Alto, Básico, Joven y Medio
+Verificamos si existen valores distintos de las opciones permitidas en la columna 'Segmento_poblacional'
+valores_invalidos_Segmento_poblacional = df_persona.loc[~df_persona['Segmento_poblacional'].isin(['Alto', 'Básico', 'Joven', 'Medio']), 'Segmento_poblacional']
+valores_invalidos_Segmento_poblacional
+
+Calcula el número de valores inválidos en la columna 'Segmento_poblacional':
+num_valores_invalidos_Segmento_poblacional = len(valores_invalidos_Segmento_poblacional)
+num_valores_invalidos_Segmento_poblacional
+
+
+indicador_calidad_Segmento_poblacional = "Cumple" if num_valores_invalidos_Segmento_poblacional == 0 else "No cumple"
+indicador_calidad_Segmento_poblacional
+
+Generamos el indicador de calidad para la regla:
+total_registros_segmento_poblacional = len(df_persona)
+print("Número de campos validos en la columna 'Segmento poblacional':", format(total_registros_segmento_poblacional-num_valores_invalidos_Segmento_poblacional,','))
+porcentaje_campos_validos_segmento_poblacional= ((total_registros_segmento_poblacional-num_valores_invalidos_Segmento_poblacional)/total_registros_segmento_poblacional)*100
+print("Porcentaje de campos validos en la columna 'Segmento poblacional':", round(porcentaje_campos_validos_segmento_poblacional,2), "%")
+
+Los errores generados para esta columna son en la palabra "Básico" y en la base datos compartida "Basico", sin tilde , esto genera que 251.425 datos se encuentren invalidos 
+
+En el campo edad no se admite el valor 0 y tampoco puede tener más de 2 caracteres
+Verificamos si existen valores igual a 0 en la columna 'Edad'
+
+valores_cero_edad = df_persona.loc[df_persona['Edad'] == 0, 'Edad']
+valores_cero_edad
+
+Calculamos el número de valores igual a 0 en la columna 'Edad'
+num_valores_cero_edad = len(valores_cero_edad)
+num_valores_cero_edad
+
+Verificamos si existen valores con más de 2 caracteres en la columna 'Edad'
+valores_largos_edad = df_persona.loc[df_persona['Edad'].astype(str).str.len() > 2, 'Edad']
+valores_largos_edad
+
+Calculamos el número de valores con más de 2 caracteres en la columna 'Edad'
+num_valores_largos_edad = len(valores_largos_edad)
+num_valores_largos_edad
+
+indicador_calidad_edad = "Cumple" if num_valores_cero_edad == 0 and num_valores_largos_edad == 0 else "No cumple"
+indicador_calidad_edad
+
+print("Indicador de calidad para la regla 'En el campo Edad no se admite el valor 0 y tampoco puede tener más de 2 caracteres':", indicador_calidad)
+
+if num_valores_cero_edad > 0:
+    print("Valores igual a 0 encontrados en la columna Edad:")
+    print(num_valores_cero_edad)
+
+if num_valores_largos_edad > 0:
+    print("Valores con más de 2 caracteres encontrados en la columna Edad:")
+    print(num_valores_largos_edad)
+
+Generamos el indicador de calidad para la regla:
+ total_registros_edad = len(df_persona)
+print("Número de campos validos en la columna 'edad':", format(total_registros_edad-(num_valores_cero_edad+num_valores_largos_edad),','))
+porcentaje_campos_validos_edad= ((total_registros_edad-(num_valores_cero_edad+num_valores_largos_edad))/total_registros_edad)*100
+print("Porcentaje de campos validos en la columna 'edad':", round(porcentaje_campos_validos_edad,2), "%")
+
+Regla de negocio:
+De acuerdo con el campo “Categoria” solo se permiten las siguientes opciones en el campo “Segmento_poblacional”
+
+Este diccionario asocia cada categoría con una lista de opciones permitidas para el campo 'Segmento_poblacional'.
+De acuerdo con el campo “Categoria” solo se permiten las siguientes opciones en el campo “Segmento_poblacional”
+opciones_permitidas_categoria = {
+    'A': ['Básico', 'Joven', 'Medio'],
+    'B': ['Joven', 'Medio'],
+    'C': ['Alto', 'Joven', 'Medio']
+}
+
+combinaciones_invalidas_categoria = df_persona.loc[~df_persona.apply(lambda x: x['Segmento_poblacional'] in opciones_permitidas_categoria.get(x['Categoria'], []), axis=1)]
+combinaciones_invalidas_categoria
+
+Calculamos el número de combinaciones no válidas:
+num_combinaciones_invalidas_categoria = len(combinaciones_invalidas_categoria)
+num_combinaciones_invalidas_categoria
+
+indicador_calidad_categoria = "Cumple" if num_combinaciones_invalidas_categoria == 0 else "No cumple"
+indicador_calidad_categoria
+
+print("Indicador de calidad para la regla 'De acuerdo con el campo Categoria solo se permiten las siguientes opciones en el campo Segmento_poblacional':", indicador_calidad_categoria)
+
+if num_combinaciones_invalidas_categoria > 0:
+    print("Combinaciones no válidas encontradas:")
+    print(combinaciones_invalidas_categoria[['Categoria', 'Segmento_poblacional']])
+
+Imprimimos el indicador de calidad y las combinaciones no válidas si corresponde:
+ total_registros_categoria = len(df_persona)
+print("Número de campos con conbinaciones validas:", format(total_registros_categoria-num_combinaciones_invalidas_categoria,','))
+porcentaje_campos_validos_categoria= ((total_registros_categoria-num_combinaciones_invalidas_categoria)/total_registros_categoria)*100
+print("Porcentaje de campos con combinaciones validas categoria y segmento_poblacional:", round(porcentaje_campos_validos_categoria,2), "%")   
+
+GRAFICOS FALLAS POR VARIABLES
+
+import locale
+
+# Establecer el formato de separadores de puntos para los valores
+locale.setlocale(locale.LC_ALL, '')
+
+# Definimos los nombres de las variables
+variables = ['NumIdPersona', 'Genero', 'Segmento_poblacional', 'Edad', 'Categoria']
+
+# Definimos el número de fallas para cada variable
+fallas_por_variable = [num_campos_vacios_NumIdPersona, num_valores_invalidos_genero,
+                       num_valores_invalidos_Segmento_poblacional,
+                       num_valores_cero_edad + num_valores_largos_edad,
+                       num_combinaciones_invalidas_categoria]
+
+# Creamos el DataFrame de fallas por variable
+df_fallas = pd.DataFrame({'Variable': variables, 'Fallas': fallas_por_variable})
+
+# Ordenamos el DataFrame por la cantidad de fallas de forma descendente
+df_fallas = df_fallas.sort_values('Fallas', ascending=False)
+
+# Creamos una lista de colores para las barras
+colores = ['steelblue', 'darkorange', 'limegreen', 'tomato', 'mediumorchid']
+
+# Creamos el gráfico de barras con colores diferentes
+plt.bar(df_fallas['Variable'], df_fallas['Fallas'], color=colores)
+plt.xlabel('Variable')
+plt.ylabel('Cantidad de Fallas')
+plt.title('Cantidad de Fallas por Variable')
+plt.xticks(rotation=45)
+
+# Agregamos las etiquetas con el número de fallas en la parte superior de cada barra
+for i, v in enumerate(df_fallas['Fallas']):
+    plt.text(i, v, f'{locale.format_string("%d", v, grouping=True)}', ha='center', va='bottom')
+
+plt.show()
+
+INDICADOR DE CALIDAD POR VARIABLE
+
+# Definimos los nombres de las variables
+variables = ['NumIdPersona', 'Genero', 'Segmento_poblacional', 'Edad', 'Categoria']
+
+# Definimos la cantidad de registros totales y correctos por variable
+registros_totales = [total_registros_NumIdPersona, total_registros_genero,
+                     total_registros_segmento_poblacional, total_registros_edad,
+                     total_registros_categoria]
+registros_correctos = [registros_correctos_NumIdpersona, registros_correctos_genero,
+                       registros_correctos_Segmento_poblacional, registros_correctos_edad,
+                       registros_correctos_categoria]
+
+# Calculamos el porcentaje de registros incorrectos
+registros_incorrectos = [registros_totales[i] - registros_correctos[i] for i in range(len(variables))]
+porcentaje_correctos = [registros_correctos[i] / registros_totales[i] * 100 for i in range(len(variables))]
+porcentaje_incorrectos = [registros_incorrectos[i] / registros_totales[i] * 100 for i in range(len(variables))]
+
+# Creamos una lista de colores para las barras
+colores = ['lightblue', 'lightgreen', 'lightyellow', 'lightsalmon', 'lightpink']
+
+# Creamos el gráfico de barras apiladas
+plt.figure(figsize=(10, 6))
+bar_width = 0.5
+index = np.arange(len(variables))
+
+# Graficamos las barras de registros correctos e incorrectos
+plt.bar(index, registros_correctos, bar_width, label='Correctos', color=colores[0])
+plt.bar(index, registros_incorrectos, bar_width, bottom=registros_correctos, label='Incorrectos', color=colores[1])
+
+# Etiquetas y leyendas
+plt.xlabel('Variable')
+plt.ylabel('Cantidad de Registros')
+plt.title('Porcentaje de Registros Correctos e Incorrectos por Variable')
+plt.xticks(index, variables, rotation=45)
+plt.legend()
+
+# Agregamos los porcentajes de registros correctos dentro de las barras
+for i in range(len(variables)):
+    plt.text(index[i], registros_correctos[i] / 2, f'{porcentaje_correctos[i]:.2f}%',
+             ha='center', va='center', color='black')
+
+plt.tight_layout()
+plt.show()
+
+
+
