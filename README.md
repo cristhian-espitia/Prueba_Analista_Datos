@@ -6,7 +6,12 @@ La Caja Colombiana de Subsidio Familiar – Colsubsidio, es una compañía que p
 Colsubsidio ha dividido la prestación de sus servicios en once diferentes unidades especializadas de servicio (UES) que ofrecen diferentes productos.
 En este caso, se requiere un perfilamiento de los datos, la programación de reglas de calidad y negocio que se puedan ejecutar diariamente para conocer el nivel de calidad de la información y posteriormente lograr generar diferentes tipos de reportes gerenciales. Para tal fin se le dispone la siguiente base de datos:
 
-Persona: Datos de las personas con afiliación vigente a la caja
+Persona: Datos de las personas con afiliación vigente a la caja  :
+
+Data
+---
+https://raw.githubusercontent.com/allisonhorst/palmerpenguins/master/inst/extdata/penguins.csv
+
 Reto de análisis de calidad
 
 Realice un informe que dé respuesta a las siguientes preguntas de negocio e identifique la cantidad de fallas presentadas por variable y el indicador de calidad general y por variable (registros sin errores / cantidad de registros).
